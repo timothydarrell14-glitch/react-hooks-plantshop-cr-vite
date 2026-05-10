@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 
-function PlantCard() {
+function PlantCard({id, name, price, image, key}) {
+
+  const[availability, setAvailability] = useState(false)
+
   return (
-    <li className="card" data-testid="plant-item">
-      <img src={"https://via.placeholder.com/400"} alt={"plant name"} />
-      <h4>{"plant name"}</h4>
-      <p>Price: {"plant price"}</p>
+    <li key={key} className="card" data-testid="plant-item">
+      <img src={image} alt={name} />
+      <h4>{name}</h4>
+      <p>Price: {price}</p>
       {true ? (
         <button className="primary">In Stock</button>
       ) : (
