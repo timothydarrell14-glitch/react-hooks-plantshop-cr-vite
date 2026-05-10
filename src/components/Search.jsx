@@ -3,7 +3,6 @@ import React, {useRef, useEffect} from "react";
 function Search() {
 
 const searchRef = useRef("")
-
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
@@ -15,7 +14,9 @@ const searchRef = useRef("")
         ref={searchRef}
       />
     </div>
+    
   );
 }
 
 export default Search;
+

@@ -12,7 +12,8 @@ function PlantCard({id, name, price, image, key}) {
   }
 
   return (
-    <li key={key} className="card" data-testid="plant-item">
+    <div>
+      <li key={key} className="card" data-testid="plant-item">
       <img src={image} alt={name} />
       <h4>{name}</h4>
       <p>Price: {price}</p>
@@ -22,6 +23,7 @@ function PlantCard({id, name, price, image, key}) {
         <button onClick={handleEvent}>Out of Stock</button>
       )}
     </li>
+    </div>
   );
 }
 
