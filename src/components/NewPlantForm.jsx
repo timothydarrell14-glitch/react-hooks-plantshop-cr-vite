@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
-function NewPlantForm({list}) {
+function NewPlantForm({ onAddPlant = () => {} }) {
 
   const nameRef = useRef("")
   const imageRef = useRef("")
   const priceRef = useRef("")
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     let newPlant = {
       name: nameRef.current.value,
@@ -14,10 +14,6 @@ function NewPlantForm({list}) {
       price: priceRef.current.value,
     }
     
-  }
-
-  useEffect(()=> {
-      const addNewPlant =  async (newPlant) => {
     try {
         const response = await fetch(`http://localhost:6001/plants`, {
             method: "POST", 
@@ -31,13 +27,18 @@ function NewPlantForm({list}) {
         }
 
         const data = await response.json();
+        
+        onAddPlant(data);
+        
+        nameRef.current.value = "";
+        imageRef.current.value = "";
+        priceRef.current.value = "";
         return data;
 
     } catch (error) {
-        console.error("Error adding user:", error);
+        console.error("Error adding plant:", error);
     }
-}
-    }, [handleSubmit])
+  }
 
 
   return (
